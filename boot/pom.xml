@@ -7,29 +7,29 @@
     <name>spring-oauth2-server-boot</name>
 
     <parent>
-        <groupId>com.hzera</groupId>
+        <groupId>com.hzera.oauth2</groupId>
         <artifactId>spring-oauth2-server</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <dependencies>
         <dependency>
-            <groupId>com.hzera</groupId>
+            <groupId>com.hzera.oauth2</groupId>
             <artifactId>spring-oauth2-server-postgres</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.hzera</groupId>
+            <groupId>com.hzera.oauth2</groupId>
             <artifactId>spring-oauth2-server-api-rest</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.hzera</groupId>
+            <groupId>com.hzera.oauth2</groupId>
             <artifactId>spring-oauth2-server-application</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.hzera</groupId>
+            <groupId>com.hzera.oauth2</groupId>
             <artifactId>spring-oauth2-server-common</artifactId>
         </dependency>
 
@@ -40,8 +40,8 @@
     </dependencies>
 
     <properties>
-        <maven.compiler.source>22</maven.compiler.source>
-        <maven.compiler.target>22</maven.compiler.target>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -74,16 +74,21 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <annotationProcessorPaths>
-                        <path>
-                            <groupId>org.mapstruct</groupId>
-                            <artifactId>mapstruct-processor</artifactId>
-                            <version>1.5.5.Final</version>
-                        </path>
-                        <path>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                            <version>${lombok.version}</version>
-                        </path>
+                      <path>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok</artifactId>
+                        <version>${lombok.version}</version>
+                      </path>
+                      <path>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok-mapstruct-binding</artifactId>
+                        <version>0.2.0</version>
+                      </path>
+                      <path>
+                        <groupId>org.mapstruct</groupId>
+                        <artifactId>mapstruct-processor</artifactId>
+                        <version>${mapstruct.version}</version>
+                      </path>
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
@@ -101,7 +106,7 @@
                 </executions>
                 <configuration>
                     <includePluginDependencies>true</includePluginDependencies>
-                    <mainClass>com.hzera.archetypes.base.archetype.Application</mainClass>
+                    <mainClass>com.hzera.oauth2.spring.oauth2.server.Application</mainClass>
                     <arguments>
                         <argument>${project.parent.basedir}/pom.xml</argument>
                         <argument>${project.parent.basedir}/boot/target/classes/META-INF/build-info.properties</argument>

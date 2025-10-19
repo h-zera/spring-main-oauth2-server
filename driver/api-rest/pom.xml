@@ -7,7 +7,7 @@
     <name>spring-oauth2-server-api-rest</name>
 
     <parent>
-        <groupId>com.hzera</groupId>
+        <groupId>com.hzera.oauth2</groupId>
         <artifactId>spring-oauth2-server</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../../pom.xml</relativePath>
@@ -15,7 +15,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.hzera</groupId>
+            <groupId>com.hzera.oauth2</groupId>
             <artifactId>spring-oauth2-server-application</artifactId>
         </dependency>
 
@@ -30,16 +30,23 @@
         </dependency>
 
         <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
-            <version>1.5.5.Final</version>
+          <groupId>org.mapstruct</groupId>
+          <artifactId>mapstruct</artifactId>
+          <version>${mapstruct.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct-processor</artifactId>
-            <version>1.5.5.Final</version>
-            <scope>provided</scope>
+          <groupId>org.mapstruct</groupId>
+          <artifactId>mapstruct-processor</artifactId>
+          <version>${mapstruct.version}</version>
+          <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok-mapstruct-binding</artifactId>
+          <version>0.2.0</version>
+          <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -56,8 +63,8 @@
     </dependencies>
 
     <properties>
-        <maven.compiler.source>22</maven.compiler.source>
-        <maven.compiler.target>22</maven.compiler.target>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -75,8 +82,8 @@
                         <configuration>
                             <inputSpec>${project.basedir}/contracts/examples-openapi-v3.yml</inputSpec>
                             <generatorName>spring</generatorName>
-                            <apiPackage>com.hzera.archetypes.base.archetype.driver.api.rest.openapi</apiPackage>
-                            <modelPackage>com.hzera.archetypes.base.archetype.driver.api.rest.openapi.model</modelPackage>
+                            <apiPackage>com.hzera.oauth2.spring.oath2.server.driver.api.rest.v1.openapi</apiPackage>
+                            <modelPackage>com.hzera.oauth2.spring.oath2.server.driver.api.rest.v1.openapi.model</modelPackage>
                             <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
                             <configOptions>
                                 <useJakartaEe>true</useJakartaEe>
@@ -84,6 +91,7 @@
                                 <library>spring-boot</library>
                                 <generateBuilders>true</generateBuilders>
                                 <useLombok>true</useLombok>
+                                <useTags>true</useTags>
                             </configOptions>
                         </configuration>
                     </execution>

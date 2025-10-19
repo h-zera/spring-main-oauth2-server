@@ -1,6 +1,6 @@
 version: '3.9'
 
-name: example-api
+name: oauth2-api
 
 services:
   app:
@@ -11,7 +11,7 @@ services:
     restart: unless-stopped
     environment:
       SPRING_ACTIVE_PROFILE: postgres
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/example_db
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/oauth2_db
       SPRING_DATASOURCE_USERNAME: user
       SPRING_DATASOURCE_PASSWORD: password
     ports:
@@ -22,17 +22,17 @@ services:
 
   db:
     image: postgres:15-alpine
-    container_name: db
+    container_name: oauth2_db
     restart: unless-stopped
     # TODO: Add default data and table creation
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: example_db
+      POSTGRES_DB: oauth2_db
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
     ports:
-      - '5432:5432'
+      - '5433:5432'
     healthcheck:
       test: [ "CMD", "pg_isready", "-U", "$$POSTGRES_DB" ]
       interval: 10s

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.hzera</groupId>
+  <groupId>com.hzera.oauth2</groupId>
   <artifactId>spring-oauth2-server</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
@@ -28,25 +28,29 @@
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>3.5.5</version>
   </parent>
+  <properties>
+    <java.version>21</java.version>
+    <mapstruct.version>1.6.3</mapstruct.version>
+  </properties>
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>com.hzera</groupId>
+        <groupId>com.hzera.oauth2</groupId>
         <artifactId>spring-oauth2-server-common</artifactId>
         <version>0.0.1-SNAPSHOT</version>
       </dependency>
       <dependency>
-        <groupId>com.hzera</groupId>
+        <groupId>com.hzera.oauth2</groupId>
         <artifactId>spring-oauth2-server-application</artifactId>
         <version>0.0.1-SNAPSHOT</version>
       </dependency>
       <dependency>
-        <groupId>com.hzera</groupId>
+        <groupId>com.hzera.oauth2</groupId>
         <artifactId>spring-oauth2-server-postgres</artifactId>
         <version>0.0.1-SNAPSHOT</version>
       </dependency>
       <dependency>
-        <groupId>com.hzera</groupId>
+        <groupId>com.hzera.oauth2</groupId>
         <artifactId>spring-oauth2-server-api-rest</artifactId>
         <version>0.0.1-SNAPSHOT</version>
       </dependency>
