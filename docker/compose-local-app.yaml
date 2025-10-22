@@ -11,7 +11,7 @@ services:
     restart: unless-stopped
     environment:
       SPRING_ACTIVE_PROFILE: postgres
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/oauth2_db
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/main_oauth2_db
       SPRING_DATASOURCE_USERNAME: user
       SPRING_DATASOURCE_PASSWORD: password
     ports:
@@ -22,13 +22,13 @@ services:
 
   db:
     image: postgres:15-alpine
-    container_name: oauth2_db
+    container_name: db
     restart: unless-stopped
     # TODO: Add default data and table creation
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: oauth2_db
+      POSTGRES_DB: main_oauth2_db
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
     ports:

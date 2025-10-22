@@ -2,35 +2,35 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring-oauth2-server-boot</artifactId>
+    <artifactId>spring-main-oauth2-server-boot</artifactId>
     <packaging>jar</packaging>
-    <name>spring-oauth2-server-boot</name>
+    <name>spring-main-oauth2-server-boot</name>
 
     <parent>
         <groupId>com.hzera.oauth2</groupId>
-        <artifactId>spring-oauth2-server</artifactId>
+        <artifactId>spring-main-oauth2-server</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <dependencies>
         <dependency>
             <groupId>com.hzera.oauth2</groupId>
-            <artifactId>spring-oauth2-server-postgres</artifactId>
+            <artifactId>spring-main-oauth2-server-postgres</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.hzera.oauth2</groupId>
-            <artifactId>spring-oauth2-server-api-rest</artifactId>
+            <artifactId>spring-main-oauth2-server-api-rest</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.hzera.oauth2</groupId>
-            <artifactId>spring-oauth2-server-application</artifactId>
+            <artifactId>spring-main-oauth2-server-application</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.hzera.oauth2</groupId>
-            <artifactId>spring-oauth2-server-common</artifactId>
+            <artifactId>spring-main-oauth2-server-common</artifactId>
         </dependency>
 
         <dependency>
@@ -106,7 +106,7 @@
                 </executions>
                 <configuration>
                     <includePluginDependencies>true</includePluginDependencies>
-                    <mainClass>com.hzera.oauth2.spring.oauth2.server.Application</mainClass>
+                    <mainClass>com.hzera.oauth2.spring.main.oauth2.server.Application</mainClass>
                     <arguments>
                         <argument>${project.parent.basedir}/pom.xml</argument>
                         <argument>${project.parent.basedir}/boot/target/classes/META-INF/build-info.properties</argument>
