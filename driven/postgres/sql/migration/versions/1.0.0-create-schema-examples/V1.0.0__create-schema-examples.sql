@@ -66,6 +66,7 @@ CREATE TABLE oauth2_consent (
     user_id UUID NOT NULL,
     granted_scopes TEXT[],
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (client_id, user_id),
     CONSTRAINT fk_consent_client
         FOREIGN KEY(client_id)
@@ -121,4 +122,16 @@ CREATE TABLE user_identity (
             REFERENCES sso_provider(id)
             ON DELETE RESTRICT,
     CONSTRAINT unique_user_sso UNIQUE (user_id, sso_id)
+);
+
+CREATE TABLE refresh_token (
+    token_hash VARCHAR(255) PRIMARY KEY,
+    user_id    UUID                     NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    expires_at TIMESTAMP WITH TIME ZONE NOT NULL,
+    is_revoked BOOLEAN                  DEFAULT FALSE,
+    CONSTRAINT fk_refresh_token_user
+        FOREIGN KEY(user_id)
+            REFERENCES users(id)
+            ON DELETE CASCADE
 );
