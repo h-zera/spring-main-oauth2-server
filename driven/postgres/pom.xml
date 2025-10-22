@@ -2,13 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring-oauth2-server-postgres</artifactId>
+    <artifactId>spring-main-oauth2-server-postgres</artifactId>
     <packaging>jar</packaging>
-    <name>spring-oauth2-server-postgres</name>
+    <name>spring-main-oauth2-server-postgres</name>
 
     <parent>
         <groupId>com.hzera.oauth2</groupId>
-        <artifactId>spring-oauth2-server</artifactId>
+        <artifactId>spring-main-oauth2-server</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
@@ -16,7 +16,7 @@
     <dependencies>
         <dependency>
             <groupId>com.hzera.oauth2</groupId>
-            <artifactId>spring-oauth2-server-application</artifactId>
+            <artifactId>spring-main-oauth2-server-application</artifactId>
         </dependency>
 
         <dependency>
