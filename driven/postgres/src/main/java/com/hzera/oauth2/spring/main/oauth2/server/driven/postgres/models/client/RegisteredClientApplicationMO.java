@@ -17,9 +17,6 @@ public class RegisteredClientApplicationMO {
     @Column(name = "client_id")
     private UUID clientId;
 
-    @Column(name = "name", nullable = false)
-    private String name;
-
     @Column(name = "description")
     private String description;
 

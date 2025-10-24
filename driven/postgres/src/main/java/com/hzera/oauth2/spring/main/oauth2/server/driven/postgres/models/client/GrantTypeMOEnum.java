@@ -1,6 +1,6 @@
 package com.hzera.oauth2.spring.main.oauth2.server.driven.postgres.models.client;
 
-public enum GrantTypeEnum {
+public enum GrantTypeMOEnum {
     authorization_code,
     client_credentials,
     refresh_token,

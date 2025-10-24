@@ -8,11 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.JdbcType;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Parameter;
-import org.hibernate.dialect.PostgreSQLArrayJdbcType;
 
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -34,6 +32,9 @@ public class RegisteredClientMO {
 
     @Column(name = "client_secret_hash", nullable = false)
     private String clientSecretHash;
+
+    @Column(name = "name", nullable = false)
+    private String name;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
@@ -66,10 +67,20 @@ public class RegisteredClientMO {
             value = EnumArrayType.class,
             parameters = @Parameter(
                     name = AbstractArrayType.SQL_ARRAY_TYPE,
-                    value = "allowed_feature"
+                    value = "grant_type"
             )
     )
-    private GrantTypeEnum[] grantTypes;
+    private GrantTypeMOEnum[] grantTypes;
+
+    @Column(name = "auth_methods", columnDefinition = "client_auth_method[]")
+    @Type(
+            value = EnumArrayType.class,
+            parameters = @Parameter(
+                    name = AbstractArrayType.SQL_ARRAY_TYPE,
+                    value = "client_auth_method"
+            )
+    )
+    private ClientAuthMethodsMOEnum[] authMethods;
 
     @Column(name = "is_first_party", nullable = false)
     private Boolean isFirstParty;
