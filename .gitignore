@@ -147,3 +147,4 @@ coverage/
 *.orig
 .metadata
 
+boot/src/main/resources/keystore/auth-keys.jks

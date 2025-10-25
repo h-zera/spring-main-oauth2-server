@@ -15,10 +15,21 @@ CREATE TYPE grant_type AS ENUM (
     'token_exchange'
 );
 
+CREATE TYPE client_auth_method AS ENUM (
+    'CLIENT_SECRET_BASIC',
+    'CLIENT_SECRET_POST',
+    'CLIENT_SECRET_JWT',
+    'PRIVATE_KEY_JWT',
+    'NONE',
+    'TLS_CLIENT_AUTH',
+    'SELF_SIGNED_TLS_CLIENT_AUTH'
+);
+
 CREATE TABLE registered_client (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     client_id VARCHAR(255) UNIQUE NOT NULL,
     client_secret_hash VARCHAR(255),
+    name VARCHAR(255) NOT NULL ,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     access_validity INTEGER NOT NULL,
@@ -27,12 +38,12 @@ CREATE TABLE registered_client (
     post_logout_uris TEXT[],
     redirect_uris TEXT[],
     grant_types grant_type[],
+    auth_methods client_auth_method[],
     is_first_party BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE registered_client_application (
     client_id UUID PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
     description TEXT,
     logo_url TEXT,
     policy_url TEXT,
@@ -66,6 +77,7 @@ CREATE TABLE oauth2_consent (
     user_id UUID NOT NULL,
     granted_scopes TEXT[],
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (client_id, user_id),
     CONSTRAINT fk_consent_client
         FOREIGN KEY(client_id)
@@ -121,4 +133,16 @@ CREATE TABLE user_identity (
             REFERENCES sso_provider(id)
             ON DELETE RESTRICT,
     CONSTRAINT unique_user_sso UNIQUE (user_id, sso_id)
+);
+
+CREATE TABLE refresh_token (
+    token_hash VARCHAR(255) PRIMARY KEY,
+    user_id    UUID                     NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    expires_at TIMESTAMP WITH TIME ZONE NOT NULL,
+    is_revoked BOOLEAN                  DEFAULT FALSE,
+    CONSTRAINT fk_refresh_token_user
+        FOREIGN KEY(user_id)
+            REFERENCES users(id)
+            ON DELETE CASCADE
 );

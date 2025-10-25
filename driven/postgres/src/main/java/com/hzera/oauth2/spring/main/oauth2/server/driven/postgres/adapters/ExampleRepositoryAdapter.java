@@ -4,7 +4,7 @@ import com.hzera.oauth2.spring.main.oauth2.server.application.ports.driven.Examp
 import com.hzera.oauth2.spring.main.oauth2.server.common.domain.HZeraPage;
 import com.hzera.oauth2.spring.main.oauth2.server.common.repository.builders.HZeraPageBuilder;
 import com.hzera.oauth2.spring.main.oauth2.server.domain.entity.ExampleEntity;
-import com.hzera.oauth2.spring.main.oauth2.server.driven.postgres.ExampleMOJpaRepository;
+import com.hzera.oauth2.spring.main.oauth2.server.driven.postgres.repository.ExampleMOJpaRepository;
 import com.hzera.oauth2.spring.main.oauth2.server.driven.postgres.mappers.ExampleMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
