@@ -21,15 +21,15 @@ public class RegisteredClientProvider implements RegisteredClientRepository {
 
     @Override
     public RegisteredClient findById(String id) {
-        var client = clientService.findById(id);
+        var clientEntity = clientService.findById(id);
 
-        return client.map(clientMapper::toSecurity).orElse(null);
+        return clientEntity.map(clientMapper::toSecurity).orElse(null);
     }
 
     @Override
     public RegisteredClient findByClientId(String clientId) {
-        var client = clientService.findByClientId(clientId);
+        var clientEntity = clientService.findByClientId(clientId);
 
-        return client.map(clientMapper::toSecurity).orElse(null);
+        return clientEntity.map(clientMapper::toSecurity).orElse(null);
     }
 }
